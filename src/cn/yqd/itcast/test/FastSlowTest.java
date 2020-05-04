@@ -21,18 +21,18 @@ public class FastSlowTest {
         six.next = seven;
 
         //查找中间值
-        String mid = getMid(first);
-        System.out.println("中间值为："+mid);
+        Node mid = getMid(first);
+        System.out.println("中间值为："+mid.item);
     }
 
     /**
      * @param first 链表的首结点
      * @return 链表的中间结点的值
      */
-    public static String getMid(Node<String> first) {
+    public static Node getMid(Node<String> first) {
         //定义两个指针
-        Node<String> fast = first;
-        Node<String> slow = first;
+        Node fast = first;
+        Node slow = first;
         //使用两个指针遍历链表，当快指针指向的结点没有下一个结点了，就可以结束了，结束之后，慢指针指向的结点就是中间值
         while(fast!=null &&fast.next!=null){
             //变化fast的值和slow的值
@@ -40,7 +40,7 @@ public class FastSlowTest {
             slow=slow.next;
         }
 
-        return slow.item;
+        return slow;
     }
 
     //结点类
