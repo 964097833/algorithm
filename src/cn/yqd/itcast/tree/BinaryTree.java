@@ -195,7 +195,7 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         }
     }
 
-    //获取整个树中所有的键
+    //前序获取整个树中所有的键
     public Queue<Key> preErgodic(){
         Queue<Key> keys = new Queue<>();
         preErgodic(root, keys);
@@ -222,6 +222,8 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         }
 
     }
+
+
 
     //使用中序遍历获取树中所有的键
     public Queue<Key> midErgodic(){

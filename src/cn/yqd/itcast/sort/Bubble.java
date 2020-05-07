@@ -1,16 +1,20 @@
 package cn.yqd.itcast.sort;
 
+/**
+ * 冒泡排序
+ */
 public class Bubble {
     /**
      * 排序方法
      * @param a 待排序数组
      */
     public static void sort(Comparable[] a) {
+        // 外层循环控制循环的层数
         for (int i = a.length-1; i > 0; i--) {
+            // 内层循环控制每层比较的次数，每次结束，在i位置的元素则是有序的
             for (int j = 0; j < i; j++) {
-                if (greater(a[j],a[j+1])) {
-                    swap(a,j,j+1);
-                }
+                // 前一个大于后一个则交换
+                if (greater(a[j],a[j+1])) swap(a,j,j+1);
             }
         }
     }

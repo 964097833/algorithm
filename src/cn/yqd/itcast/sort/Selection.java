@@ -1,21 +1,18 @@
 package cn.yqd.itcast.sort;
 
+/**
+ * 选择排序
+ */
 public class Selection {
     /**
      * 排序方法
      * @param a 待排序数组
      */
     public static void sort(Comparable[] a) {
-        int minIndex;
-        for (int i = 0; i < a.length; i++) {
-            //假定本次遍历，最小值所在的索引是i
-            minIndex = i;
+        for (int i = 0; i < a.length-1; i++) {
             for (int j = i+1; j < a.length; j++) {
-                //如果此处的值比索引中的值小，则更新最小值所在的索引
-                if (greater(a[minIndex], a[j])) minIndex = j;
+                if (greater(a[i],a[j])) swap(a,i,j);
             }
-            //交换i索引处和minIndex索引处的值
-            swap(a,minIndex,i);
         }
     }
 

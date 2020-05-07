@@ -1,8 +1,6 @@
 package cn.yqd.itcast.test;
 
-import cn.yqd.itcast.sort.Insertion;
-import cn.yqd.itcast.sort.Merge;
-import cn.yqd.itcast.sort.Shell;
+import cn.yqd.itcast.sort.*;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -28,9 +26,40 @@ public class SortCompare {
         Integer[] arr = new Integer[list.size()];
         list.toArray(arr);
 
-//        testInsertion(arr);
-        testShell(arr);
-        testMergel(arr);
+//        testBubble(arr);
+//        testSelection(arr);
+        testInsertion(arr);
+//        testShell(arr);
+//        testMergel(arr);
+
+    }
+
+    /**
+     * 测试选择排序
+     * @param arr
+     */
+    public static void testBubble(Integer[] arr) {
+        // 1.获取开始时间
+        long start = System.currentTimeMillis();
+        // 2.运行排序算法
+        Bubble.sort(arr);
+        // 3.获取结束时间，并计算出耗时
+        long end = System.currentTimeMillis();
+        System.out.println("冒泡算法耗时为：" + (end-start) + "毫秒。");
+    }
+
+    /**
+     * 测试选择排序
+     * @param arr
+     */
+    public static void testSelection(Integer[] arr) {
+        // 1.获取开始时间
+        long start = System.currentTimeMillis();
+        // 2.运行排序算法
+        Selection.sort(arr);
+        // 3.获取结束时间，并计算出耗时
+        long end = System.currentTimeMillis();
+        System.out.println("选择算法耗时为：" + (end-start) + "毫秒。");
     }
 
     /**
