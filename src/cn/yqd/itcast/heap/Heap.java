@@ -5,7 +5,7 @@ package cn.yqd.itcast.heap;
  * @param <T>
  */
 public class Heap<T extends Comparable<T>> {
-    private T[] imtes;
+    private T[] items;
     private int N;
 
     /**
@@ -13,7 +13,7 @@ public class Heap<T extends Comparable<T>> {
      * @param capacity
      */
     public Heap(int capacity){
-        imtes = (T[]) new Comparable[capacity+1];
+        items = (T[]) new Comparable[capacity+1];
         this.N=0;
     }
 
@@ -24,7 +24,7 @@ public class Heap<T extends Comparable<T>> {
      * @return
      */
     private boolean less(int i,int j){
-        return imtes[i].compareTo(imtes[j]) < 0;
+        return items[i].compareTo(items[j]) < 0;
     }
 
     /**
@@ -34,9 +34,9 @@ public class Heap<T extends Comparable<T>> {
      */
     private void swap(int i,int j){
         T temp;
-        temp = imtes[i];
-        imtes[i] = imtes[j];
-        imtes[j] = temp;
+        temp = items[i];
+        items[i] = items[j];
+        items[j] = temp;
     }
 
     /**
@@ -44,7 +44,7 @@ public class Heap<T extends Comparable<T>> {
      * @param t
      */
     public void insert(T t){
-        imtes[++N] = t;
+        items[++N] = t;
         swim(N);
     }
 
@@ -73,11 +73,11 @@ public class Heap<T extends Comparable<T>> {
      */
     public T delMax(){
         // max存储删除元素的值
-        T max = imtes[1];
+        T max = items[1];
         // 将最后一个元素放到根节点，根结点元素放到N索引位置
         swap(1,N);
         // 删除最大的元素
-        imtes[N] = null;
+        items[N] = null;
         // 堆长度减一
         N--;
         // 使删除后的堆有序
