@@ -32,6 +32,7 @@ public class DepthFirstSearch {
     private void dfs(Graph G, int v) {
         // 当前顶点标记为已搜索
         marked[v] = true;
+        System.out.println(v+" ");
         // 遍历v的邻接表，得到每一个顶点w
         for (Integer w : G.adj(v)) {
             // 如果该顶点未被搜索过，则递归搜索与w相关的其他顶点

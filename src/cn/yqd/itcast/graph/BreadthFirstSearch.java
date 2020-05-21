@@ -14,9 +14,10 @@ public class BreadthFirstSearch {
         //创建一个和图的顶点数一样大小的布尔数组
         this.marked = new boolean[G.V()];
         //初始化待搜索顶点的队列
-        this.count = 0;
-        //搜索G图中与顶点s相同的所有顶点
         this.waitSearch = new Queue<Integer>();
+        //搜索G图中与顶点s相通的所有顶点
+        bfs(G, s);
+
     }
 
     /**
@@ -32,12 +33,17 @@ public class BreadthFirstSearch {
         //使用while循环从队列中拿出待搜索的顶点wait，进行搜索邻接表
         while (!waitSearch.isEmpty()) {
             Integer wait = waitSearch.dequeue();
+            //测试输出顺序
+            System.out.println(wait+" ");
             //遍历wait顶点的邻接表，得到每一个顶点w
             for (Integer w : G.adj(wait)) {
                 /*//如果当前顶点w没有被搜索过，则递归搜索与w顶点相通的其他顶点
                 if (!marked[w]) bfs(G, w);*/
                 //如果当前如果当前顶点w没有被搜索过，则把顶点加入队列中
-                if (!marked[w]) waitSearch.enqueue(w);
+                if (!marked[w]) {
+                    marked[w] = true;
+                    waitSearch.enqueue(w);
+                }
             }
         }
         //相通的顶点数量+1
