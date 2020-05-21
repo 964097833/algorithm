@@ -156,6 +156,7 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
             minNode.right = x.right;
             //让x结点的父结点指向minNode
             x = minNode;
+            System.out.println(x.value);
 
 
 

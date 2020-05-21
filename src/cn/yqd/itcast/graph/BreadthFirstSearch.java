@@ -34,8 +34,10 @@ public class BreadthFirstSearch {
             Integer wait = waitSearch.dequeue();
             //遍历wait顶点的邻接表，得到每一个顶点w
             for (Integer w : G.adj(wait)) {
-                //如果当前顶点w没有被搜索过，则递归搜索与w顶点相通的其他顶点
-                if (!marked[w]) bfs(G, w);
+                /*//如果当前顶点w没有被搜索过，则递归搜索与w顶点相通的其他顶点
+                if (!marked[w]) bfs(G, w);*/
+                //如果当前如果当前顶点w没有被搜索过，则把顶点加入队列中
+                if (!marked[w]) waitSearch.enqueue(w);
             }
         }
         //相通的顶点数量+1
