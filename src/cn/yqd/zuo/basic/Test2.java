@@ -1,7 +1,7 @@
 package cn.yqd.zuo.basic;
 
+
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * @Author yuqiaodi
@@ -10,31 +10,41 @@ import java.util.List;
  */
 public class Test2 {
 
-    public static void quickSort(int[] arr, int L, int R) {
-        if (L >= R) {
+    public static void heapSort(int[] arr) {
+        if (arr == null || arr.length < 2) {
             return;
         }
-        swap(arr, R, L + (int) (Math.random() * (R - L + 1)));
-        int[] p = partition(arr, L, R);
-        quickSort(arr, L, p[0] - 1);
-        quickSort(arr, p[1] + 1, R);
+        for (int i = 1; i < arr.length; i++) {
+            heapInsert(arr, i);
+        }
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            heapify(arr, 0, i);
+        }
     }
 
-    private static int[] partition(int[] arr, int L, int R) {
-        int less = L - 1;
-        int more = R;
-        int cur = L;
-        while (cur < more) {
-            if (arr[cur] < arr[R]) {
-                swap(arr, cur++, ++less);
-            } else if (arr[cur] > arr[R]) {
-                swap(arr, cur, --more);
-            } else {
-                cur++;
+
+    private static void heapify(int[] arr, int index, int heapSize) {
+        int left = index * 2 + 1;
+        while (left < heapSize) {
+            int largest = left + 1 < heapSize && arr[left] < arr[left + 1]
+                    ? left + 1
+                    : left;
+            largest = arr[index] < arr[largest] ? largest : index;
+            if (largest == index) {
+                break;
             }
+            swap(arr, index, largest);
+            index = largest;
+            left = index * 2 + 1;
         }
-        swap(arr, R, more);
-        return new int[] {less+1, more};
+    }
+
+    private static void heapInsert(int[] arr, int index) {
+        while (arr[index] > arr[(index - 1 )/ 2]) {
+            swap(arr, index, (index - 1) / 2);
+            index = (index - 1) / 2;
+        }
     }
 
     private static void swap(int[] arr, int i, int j) {
@@ -46,13 +56,11 @@ public class Test2 {
     /**
      * =========================================
      * 对数器
-     * @return
      */
     // 一个绝对正确的方法，可以直接调用一些库函数来进行测试
     public static void rightMethod(int[] arr) {
         Arrays.sort(arr);
     }
-
 
     // 随机样本产生器
     public static int[] generateRandomArray(int size, int value) {
@@ -65,59 +73,6 @@ public class Test2 {
             arr[i] = (int)((value+1) * Math.random()) - (int)((value+1) * Math.random());
         }
         return arr;
-    }
-
-
-    public static void main(String[] args) {
-        int testTime = 500000;
-        int size = 20;
-        int value = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(size, value);
-            int[] arr2 = copyArray(arr1);
-            int[] arr3 = copyArray(arr1);
-            quickSort(arr1,0,arr1.length-1);
-            rightMethod(arr2);
-            if (!isEqual(arr1,arr2)) {
-                succeed = false;
-                printArray(arr3);
-                printArray(arr1);
-                printArray(arr2);
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "error...");
-        int[] arr = generateRandomArray(size, value);
-        printArray(arr);
-        quickSort(arr,0,arr.length-1);
-        printArray(arr);
-
-    }
-
-    private static void printArray(int[] arr3) {
-        for (int i = 0; i < arr3.length; i++) {
-            System.out.print(arr3[i] + " ");
-        }
-        System.out.println();
-    }
-
-    private static void printArray(List<int[]> list) {
-        for (int[] ints : list) {
-            System.out.print("(" + ints[0] +"," + ints[1] + ")" + " ");
-        }
-        System.out.println();
-    }
-
-    private static int[] copyArray(int[] arr1) {
-        if (arr1 == null || arr1.length < 1) {
-            return new int[0];
-        }
-        int[] res = new int[arr1.length];
-        for (int i = 0; i < arr1.length; i++) {
-            res[i] = arr1[i];
-        }
-        return res;
     }
 
     // 实现两个数组比对的方法
@@ -137,5 +92,48 @@ public class Test2 {
             }
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        int testTime = 500000;
+        int size = 10;
+        int value = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = generateRandomArray(size, value);
+            int[] arr2 = copyArray(arr1);
+            int[] arr3 = copyArray(arr1);
+            heapSort(arr1);
+            rightMethod(arr2);
+            if (!isEqual(arr1,arr2)) {
+                succeed = false;
+                printArray(arr3);
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "error...");
+        int[] arr = generateRandomArray(size, value);
+        printArray(arr);
+        heapSort(arr);
+        printArray(arr);
+
+    }
+
+    private static void printArray(int[] arr3) {
+        for (int i = 0; i < arr3.length; i++) {
+            System.out.print(arr3[i] + " ");
+        }
+        System.out.println();
+    }
+
+    private static int[] copyArray(int[] arr1) {
+        if (arr1 == null || arr1.length < 1) {
+            return new int[0];
+        }
+        int[] res = new int[arr1.length];
+        for (int i = 0; i < arr1.length; i++) {
+            res[i] = arr1[i];
+        }
+        return res;
     }
 }

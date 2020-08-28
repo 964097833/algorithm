@@ -5,7 +5,7 @@ package cn.yqd.zuo.basic;
  * @Date 2020/8/20 10:45
  * @Version 1.0
  */
-public class Code_11_PrintMatrixSpiralOrder {
+public class Code_13_PrintMatrixSpiralOrder {
 
     /**
      * 转圈打印矩阵

@@ -7,12 +7,12 @@ import java.util.Stack;
  * @Date 2020/8/19 10:08
  * @Version 1.0
  */
-public class Code_10_MinStack {
+public class Code_12_MinStack {
 
     private Stack<Integer> data;
     private Stack<Integer> min;
 
-    public Code_10_MinStack() {
+    public Code_12_MinStack() {
         data = new Stack<>();
         min = new Stack<>();
     }
@@ -38,7 +38,7 @@ public class Code_10_MinStack {
     }
 
     public static void main(String[] args) {
-        Code_10_MinStack minStack = new Code_10_MinStack();
+        Code_12_MinStack minStack = new Code_12_MinStack();
         minStack.push(3);
         minStack.push(2);
         minStack.push(1);

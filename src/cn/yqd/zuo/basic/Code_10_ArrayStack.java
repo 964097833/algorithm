@@ -6,12 +6,13 @@ package cn.yqd.zuo.basic;
  * @Date 2020/8/19 9:23
  * @Version 1.0
  */
-public class ArrayStack {
+public class Code_10_ArrayStack {
 
     int[] arr;
+    /** 指向当前需要弹出的数 */
     int index;
 
-    public ArrayStack(int size) {
+    public Code_10_ArrayStack(int size) {
         if (size < 0) {
             throw new IllegalArgumentException("The init size is less than 0");
         }

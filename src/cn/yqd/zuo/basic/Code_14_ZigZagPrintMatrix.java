@@ -11,7 +11,7 @@ package cn.yqd.zuo.basic;
  * @Date 2020/8/20 14:09
  * @Version 1.0
  */
-public class Code_12_ZigZagPrintMatrix {
+public class Code_14_ZigZagPrintMatrix {
 
     public static void printMatrixZigZag(int[][] matrix) {
         int aR = 0;

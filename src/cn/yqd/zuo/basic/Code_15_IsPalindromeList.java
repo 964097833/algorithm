@@ -14,7 +14,7 @@ import cn.yqd.itcast.linear.Stack;
  * @Date 2020/8/23 16:34
  * @Version 1.0
  */
-public class Code_13_IsPalindromeList {
+public class Code_15_IsPalindromeList {
 
     public static class Node {
         public int value;

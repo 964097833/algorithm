@@ -9,14 +9,14 @@ import java.beans.IntrospectionException;
  * @Date 2020/8/19 9:50
  * @Version 1.0
  */
-public class ArrayQueue {
+public class Code_11_ArrayQueue {
 
     private Integer[] arr;
     private Integer size;
     private Integer first;
     private Integer last;
 
-    public ArrayQueue(int initSize) {
+    public Code_11_ArrayQueue(int initSize) {
         arr = new Integer[initSize];
         size = 0;
         first = 0;

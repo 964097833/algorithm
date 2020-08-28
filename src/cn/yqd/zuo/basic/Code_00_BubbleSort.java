@@ -84,6 +84,8 @@ public class Code_00_BubbleSort {
             if (!isEqual(arr1,arr2)) {
                 succeed = false;
                 printArray(arr3);
+                printArray(arr1);
+                printArray(arr2);
                 break;
             }
         }

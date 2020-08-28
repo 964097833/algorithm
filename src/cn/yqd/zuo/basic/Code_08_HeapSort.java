@@ -13,16 +13,15 @@ public class Code_08_HeapSort {
         if (arr == null || arr.length < 2) {
             return;
         }
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 1; i < arr.length; i++) {
             heapInsert(arr, i);
         }
-        int heapSize = arr.length;
-        swap(arr, 0, --heapSize);
-        while (heapSize > 0) {
-            heapify(arr, 0, heapSize);
-            swap(arr, 0, --heapSize);
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            heapify(arr, 0, i);
         }
     }
+
 
     private static void heapify(int[] arr, int index, int heapSize) {
         int left = index * 2 + 1;
@@ -31,7 +30,7 @@ public class Code_08_HeapSort {
                     ? left + 1
                     : left;
             largest = arr[index] < arr[largest] ? largest : index;
-            if (index == largest) {
+            if (largest == index) {
                 break;
             }
             swap(arr, index, largest);
@@ -41,7 +40,7 @@ public class Code_08_HeapSort {
     }
 
     private static void heapInsert(int[] arr, int index) {
-        while (arr[index] > arr[(index - 1) / 2]) {
+        while (arr[index] > arr[(index - 1 )/ 2]) {
             swap(arr, index, (index - 1) / 2);
             index = (index - 1) / 2;
         }
@@ -97,7 +96,7 @@ public class Code_08_HeapSort {
 
     public static void main(String[] args) {
         int testTime = 500000;
-        int size = 10;
+        int size = 5;
         int value = 100;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
@@ -117,9 +116,6 @@ public class Code_08_HeapSort {
         printArray(arr);
         heapSort(arr);
         printArray(arr);
-//        int[] arr = {1,2,0,4,3,1};
-//        mergeSort(arr);
-//        printArray(arr);
     }
 
     private static void printArray(int[] arr3) {
