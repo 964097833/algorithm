@@ -1,18 +1,18 @@
 package cn.yqd.zuo.basic;
 
 /**
+ * 打印矩阵相关的两个问题
  * @Author yuqiaodi
  * @Date 2020/8/20 10:45
  * @Version 1.0
  */
-public class Code_13_PrintMatrixSpiralOrder {
+public class Code_16_PrintMatrixSpiralOrder {
 
     /**
      * 转圈打印矩阵
      * 【题目】 给定一个整型矩阵matrix，请按照转圈的方式打印它。
-     * 例如： 1 2 3 4 5 6 7 8 9 10 11 12 13 14
-     * 15 16 打印结果为：1，2，3，4，8，12，16，15，14，13，9，
-     * 5，6，7，11， 10
+     * 例如： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16
+     * 打印结果为：1，2，3，4，8，12，16，15，14，13，9，5，6，7，11，10
      * 【要求】 额外空间复杂度为O(1)。
      * @param matrix
      */
@@ -21,6 +21,7 @@ public class Code_13_PrintMatrixSpiralOrder {
         int tC = 0;
         int dR = matrix.length - 1;
         int dC = matrix[0].length - 1;
+        // 把二维数组左上坐标和右下坐标传入，然后从外向内按圈打印
         while (tR <= dR && tC <= dC) {
             printEdge(matrix, tR++, tC++, dR--, dC--);
         }
@@ -31,10 +32,12 @@ public class Code_13_PrintMatrixSpiralOrder {
         int curR = tR;
         int curC = tC;
         if (curR == dR) {
+            // 两个点在同一行
             for (int i = curC; i <= dC; i++) {
                 System.out.print(matrix[curR][i] + " ");
             }
         } else if (curC == dC) {
+            // 同一列的情况
             for (int i = curR; i <= dR; i++) {
                 System.out.print(matrix[i][curC] + " ");
             }
@@ -56,8 +59,7 @@ public class Code_13_PrintMatrixSpiralOrder {
 
     /**
      * 旋转正方形矩阵
-     * 【题目】 给定一个整型正方形矩阵matrix，请把该矩阵调整成
-     * 顺时针旋转90度的样子。
+     * 【题目】 给定一个整型正方形矩阵matrix，请把该矩阵调整成顺时针旋转90度的样子。
      * 【要求】 额外空间复杂度为O(1)。
      * @param matrix
      */

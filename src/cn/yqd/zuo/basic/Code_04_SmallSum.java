@@ -1,6 +1,8 @@
 package cn.yqd.zuo.basic;
 
 
+import cn.yqd.zuo.util.CheckDataUtil;
+
 /**
  * 小和问题
  * 在一个数组中，每一个数左边比当前数小的数累加起来，叫做这个数组的小和。求一个数组
@@ -66,72 +68,44 @@ public class Code_04_SmallSum {
      * =========================================
      * 对数器
      */
-    // 一个绝对正确的方法，可以直接调用一些库函数来进行测试
-    public static int rightMethod(int[] arr) {
-        int res = 0;
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                res += arr[i] < arr[j] ? arr[i] : 0;
-            }
-        }
-        return res;
-    }
-
-    // 随机样本产生器
-    public static int[] generateRandomArray(int size, int value) {
-        //Math.random() -> double[0,1)
-        //(int)((size + 1) * Math.random()) -> [0,size]整数
-        // 生成长度随机[0,size]的数组
-        int[] arr = new int[(int) ((size + 1) * Math.random())];
-        for (int i = 0; i < arr.length; i++) {
-            // [-value, value]之间的随机数
-            arr[i] = (int)((value+1) * Math.random()) - (int)((value+1) * Math.random());
-        }
-        return arr;
-    }
-
-
     public static void main(String[] args) {
         int testTime = 500000;
-        int size = 100;
+        int size = 10;
         int value = 1000;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(size, value);
-            int[] arr2 = copyArray(arr1);
-            int[] arr3 = copyArray(arr1);
+            int[] arr1 = CheckDataUtil.generateRandomArray(size, value);
+            int[] arr2 = CheckDataUtil.copyArray(arr1);
+            int[] arr3 = CheckDataUtil.copyArray(arr1);
             int smallSum = smallSum(arr1);
             int rightMethod = rightMethod(arr2);
             if (smallSum != rightMethod) {
                 succeed = false;
-                printArray(arr3);
+                CheckDataUtil.printArray(arr3);
                 System.out.println(smallSum);
                 System.out.println(rightMethod);
                 break;
             }
         }
         System.out.println(succeed ? "Nice!" : "error...");
-        int[] arr = generateRandomArray(size, value);
-        int[] copyArray = copyArray(arr);
-        printArray(arr);
+        int[] arr = CheckDataUtil.generateRandomArray(size, value);
+        int[] copyArray = CheckDataUtil.copyArray(arr);
+        CheckDataUtil.printArray(arr);
         System.out.println(smallSum(arr));
         System.out.println(rightMethod(copyArray));
     }
 
-    private static void printArray(int[] arr3) {
-        for (int i = 0; i < arr3.length; i++) {
-            System.out.print(arr3[i] + " ");
-        }
-        System.out.println();
-    }
-
-    private static int[] copyArray(int[] arr1) {
-        if (arr1 == null || arr1.length < 1) {
-            return new int[0];
-        }
-        int[] res = new int[arr1.length];
-        for (int i = 0; i < arr1.length; i++) {
-            res[i] = arr1[i];
+    /**
+     * 效率的低的，思路简单的，绝对正确的产生小数和的方法
+     * @param arr
+     * @return
+     */
+    public static int rightMethod(int[] arr) {
+        int res = 0;
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                res += arr[i] < arr[j] ? arr[i] : 0;
+            }
         }
         return res;
     }

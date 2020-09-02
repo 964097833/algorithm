@@ -1,5 +1,7 @@
 package cn.yqd.zuo.basic;
 
+import cn.yqd.zuo.util.CheckDataUtil;
+
 import java.util.Arrays;
 
 /**
@@ -65,7 +67,33 @@ public class Code_09_MaxGap {
      * =========================================
      * 对数器
      */
-    /** 一个绝对正确的方法，可以直接调用一些库函数来进行测试 */
+    public static void main(String[] args) {
+        int testTime = 500000;
+        int size = 10;
+        int value = 100;
+        boolean succeed = true;
+        for (int i = 0; i < testTime; i++) {
+            int[] arr1 = CheckDataUtil.generateRandomArray(size, value);
+            int[] arr2 = CheckDataUtil.copyArray(arr1);
+            int[] arr3 = CheckDataUtil.copyArray(arr1);
+            int maxGap = maxGap(arr1);
+            int right = rightMethod(arr2);
+            if (maxGap != right) {
+                CheckDataUtil.printArray(arr3);
+                System.out.println("maxGap:" + maxGap);
+                System.out.println("right:" + right);
+                succeed = false;
+                break;
+            }
+        }
+        System.out.println(succeed ? "Nice!" : "error...");
+        int[] arr = CheckDataUtil.generateRandomArray(size, value);
+        CheckDataUtil.printArray(arr);
+        System.out.println(maxGap(arr));
+        System.out.println(rightMethod(arr));
+    }
+
+    /** 通过排序之后，遍历所有数，取其中相邻两数的最大值 */
     public static int rightMethod(int[] arr) {
         if (arr == null || arr.length < 2) {
             return 0;
@@ -76,63 +104,6 @@ public class Code_09_MaxGap {
             max = Math.max(max, arr[i] - arr[i - 1]);
         }
         return max;
-    }
-
-    /** 随机样本产生器 */
-    public static int[] generateRandomArray(int size, int value) {
-        //Math.random() -> double[0,1)
-        //(int)((size + 1) * Math.random()) -> [0,size]整数
-        // 生成长度随机[0,size]的数组
-        int[] arr = new int[(int) ((size + 1) * Math.random())];
-        for (int i = 0; i < arr.length; i++) {
-            // [-value, value]之间的随机数
-            arr[i] = (int)((value+1) * Math.random()) - (int)((value+1) * Math.random());
-        }
-        return arr;
-    }
-
-    public static void main(String[] args) {
-        int testTime = 500000;
-        int size = 10;
-        int value = 100;
-        boolean succeed = true;
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(size, value);
-            int[] arr2 = copyArray(arr1);
-            int[] arr3 = copyArray(arr1);
-            int maxGap = maxGap(arr1);
-            int right = rightMethod(arr2);
-            if (maxGap != right) {
-                printArray(arr3);
-                System.out.println("maxGap:" + maxGap);
-                System.out.println("right:" + right);
-                succeed = false;
-                break;
-            }
-        }
-        System.out.println(succeed ? "Nice!" : "error...");
-        int[] arr = generateRandomArray(size, value);
-        printArray(arr);
-        System.out.println(maxGap(arr));
-        System.out.println(rightMethod(arr));
-    }
-
-    private static void printArray(int[] arr3) {
-        for (int i = 0; i < arr3.length; i++) {
-            System.out.print(arr3[i] + " ");
-        }
-        System.out.println();
-    }
-
-    private static int[] copyArray(int[] arr1) {
-        if (arr1 == null || arr1.length < 1) {
-            return new int[0];
-        }
-        int[] res = new int[arr1.length];
-        for (int i = 0; i < arr1.length; i++) {
-            res[i] = arr1[i];
-        }
-        return res;
     }
 
 }
