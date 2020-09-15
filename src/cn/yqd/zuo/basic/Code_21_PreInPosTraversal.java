@@ -70,7 +70,7 @@ public class Code_21_PreInPosTraversal {
             saveStack.push(head);
             while (!saveStack.isEmpty()) {
                 head = saveStack.pop();
-                // 将《中右左》顺序的遍历放进一个栈里，在取出时就能得到后序遍历的顺序
+                // 将<中右左>顺序遍历的结果放进一个栈里，在取出时就能得到后序遍历的顺序
                 printStack.push(head);
                 if (head.left != null) {
                     saveStack.push(head.left);
@@ -90,9 +90,9 @@ public class Code_21_PreInPosTraversal {
     public static void posOrderUnRecur2(Node h) {
         System.out.print("pos-order: ");
         if (h != null) {
-            Stack<Node> stack = new Stack<Node>();
+            Stack<Node> stack = new Stack<>();
             stack.push(h);
-            Node c = null;
+            Node c;
             while (!stack.isEmpty()) {
                 c = stack.peek();
                 if (c.left != null && h != c.left && h != c.right) {
@@ -138,12 +138,9 @@ public class Code_21_PreInPosTraversal {
         preOrderUnRecur(head);
         inOrderUnRecur(head);
         posOrderUnRecur1(head);
-//        posOrderUnRecur2(head);
+        posOrderUnRecur2(head);
 
     }
-
-
-
 
     /** 递归形式的前序遍历 */
     private static void preOrderRecur(Node head) {

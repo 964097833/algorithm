@@ -1,6 +1,9 @@
 package cn.yqd.zuo.basic;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @Author yuqiaodi
  * @Date 2020/8/14 14:57
@@ -8,19 +11,17 @@ package cn.yqd.zuo.basic;
  */
 public class Test {
 
-    public static int getMax(int[] arr, int L, int R) {
-        if (L == R) {
-            return arr[L];
-        }
-        int mid = L + (R - L)/2;
-        int maxLeft = getMax(arr, L, mid);
-        int maxRight = getMax(arr, mid+1, R);
-        return Math.max(maxLeft, maxRight);
-    }
-
     public static void main(String[] args) {
-        int[] arr = {4,3,1,2,5,6};
-        System.out.println(getMax(arr,0,arr.length-1));
+
+        List<String> platformList = new ArrayList<>();
+        platformList.add("123");
+        platformList.add("1");
+        platformList.add("广州市政府信息共享平台");
+        System.out.println(platformList.contains("123"));
+        System.out.println(platformList.contains("广州市政府信息共享平台"));
+        System.out.println(platformList.contains("23"));
+
+
     }
 
 }
